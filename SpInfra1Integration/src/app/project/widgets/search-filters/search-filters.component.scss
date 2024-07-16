@@ -1,0 +1,31 @@
+@use '../../css/global-variables' as global-var;
+@import '../../css/global-styles.scss';
+
+div.search-input {
+
+  span.search {
+    background-color: transparent;
+    color: global-var.$input-color;
+  }
+
+  input.border-left-none {
+    outline: 0;
+    border-left: 0;
+  }
+}
+
+div.filter-buttons {
+
+  button.clear {
+    height: 38px;
+  }
+}
+
+div.filter-switch {
+
+  input[role='switch'] {
+    transform: translateY(3px);
+    height: 1rem;
+    width: 28px;
+  }
+}

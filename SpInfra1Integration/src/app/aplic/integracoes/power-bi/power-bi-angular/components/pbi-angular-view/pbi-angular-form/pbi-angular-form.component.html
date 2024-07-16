@@ -1,0 +1,57 @@
+<form [formGroup]="reportForm" class="mb-3">
+   <div class="row mb-3">
+      <div class="col-6">
+         <div class="col-12">
+            <label for="tipo" class="form-label fw-bold">Tipo<span class="text-danger">*</span></label>
+            <select class="form-select" id="tipo" formControlName="_tipo" [class.is-invalid]="FormUtils.isInvalidField(reportForm.get('_tipo'))">
+               <option [value]="null" disabled selected>Selecione um tipo</option>
+               <option [value]="'report'">Relatório</option>
+               <option [value]="'dashboard'">Dashboard</option>
+            </select>
+            <app-field-error-message [control]="reportForm.get('_tipo')" label="Tipo"></app-field-error-message>
+         </div>
+      </div>
+      <div class="col-6">
+         <label for="tipoToken" class="form-label fw-bold">Tipo de Token<span class="text-danger">*</span></label>
+         <select class="form-select" id="tipoToken" formControlName="_tipoToken" [class.is-invalid]="FormUtils.isInvalidField(reportForm.get('_tipoToken'))">
+            <option [value]="null" disabled selected>Selecione um tipo</option>
+            <option [value]="'Aad'">Azure Active Directory</option>
+            <option [value]="'Embed'">Imbutido</option>
+         </select>
+         <app-field-error-message [control]="reportForm.get('_tipoToken')" label="Tipo de token"></app-field-error-message>
+      </div>
+   </div>
+
+   <div class="row mb-3">
+      <div class="col-12">
+         <label for="embedURL" class="form-label fw-bold">Embed URL<span class="text-danger">*</span></label>
+         <input class="form-control" id="embedURL" formControlName="_embedURL" [class.is-invalid]="FormUtils.isInvalidField(reportForm.get('_embedURL'))">
+         <app-field-error-message [control]="reportForm.get('_embedURL')" label="URL"></app-field-error-message>
+      </div>
+   </div>
+
+   <div class="row mb-3">
+      <div class="col-12">
+         <label for="tokenAcesso" class="form-label fw-bold">Token de acesso<span class="text-danger">*</span></label>
+         <input class="form-control" id="tokenAcesso" formControlName="_tokenAcesso" [class.is-invalid]="FormUtils.isInvalidField(reportForm.get('_tokenAcesso'))">
+         <app-field-error-message [control]="reportForm.get('_tokenAcesso')" label="Token de acesso"></app-field-error-message>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-12">
+         <label for="configuracoesExtras" class="form-label fw-bold">JSON de configurações extras</label>
+         <textarea class="form-control" id="configuracoesExtras" formControlName="_configuracoesExtras" rows="12" placeholder="{
+   settings: {
+      panes: {
+         filters: {
+            expanded: false,
+            visible: false
+         }
+      },
+      background: models. BackgroundType.Transparent,
+   }
+}"></textarea>
+      </div>
+   </div>
+</form>

@@ -1,0 +1,26 @@
+<!-- #region HEADER -->
+<app-simple-header mode="list" menuGroup="Integração" keyword="Integração" customPageTitle="Integração via biblioteca Angular" [visibleAuditBtn]="false"></app-simple-header>
+<!-- #endregion HEADER -->
+
+<div class="p-4 glb-main-container w-100 glb-min-vh-100">
+   <div class="d-flex flex-column align-items-start justify-content-start w-100 h-100">
+      <!-- #region TITLE -->
+       <div class="align-items-start fs-5 fw-bold mb-3"> Relatório </div>
+      <!-- #endregion TITLE -->
+       
+      <!-- #region RELATÓRIO -->
+      <div class="row w-100 h-100">
+         <div *ngIf="!isEmbedded; else embebReportFlow" class="col-12">
+            <pbi-initialization-form (onReportConfig)="reportConfig = $event; isEmbedded = $event.id != ''"></pbi-initialization-form>
+            <button type="button" class="btn btn-primary" (click)="initializeData()"> INICIALIZAR DASHBOARD </button>
+         </div>
+
+         <ng-template #embebReportFlow>
+            <div class="glb-vh-100">
+               <powerbi-report class="w-100 h-100" [embedConfig]="reportConfig" [cssClassName]="reportClass" [phasedEmbedding]="phasedEmbeddingFlag" [eventHandlers]="eventHandlersMap" />
+            </div>
+         </ng-template>
+      </div>
+      <!-- #endregion RELATÓRIO -->
+   </div>
+</div>

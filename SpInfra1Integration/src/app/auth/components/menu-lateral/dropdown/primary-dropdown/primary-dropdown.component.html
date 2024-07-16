@@ -1,0 +1,13 @@
+<div class="p-2">
+    <div class="mb-2">
+            <li *ngFor="let option of primaryDropdown; let i = index" ><a class="dropdown-item mb-2"><img src="{{ option.icon }}" alt="{{ option.label }}">{{ option.label }}</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item link-portal mt-2" (click)="redirectToPrePortal()" target="_blank">Portal Sispro</a></li>										
+    </div>
+
+    <!-- <ng-template #secondary_dropdown>
+        <div #secondary_ref (clickOutside)="onClickedOutside($event, secondary_ref)">
+            <app-secondary-dropdown (backPrimaryDropdown)="backToPrimary($event)"></app-secondary-dropdown>
+        </div>
+    </ng-template> -->
+</div>

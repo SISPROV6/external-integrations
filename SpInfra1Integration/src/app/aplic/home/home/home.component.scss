@@ -1,0 +1,24 @@
+/* PAGE CONTENT */
+* {
+  color: #000;
+
+  a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+}
+
+
+// #region Main Content
+.link-cards {
+  .card {
+    background-color: rgba(219, 223, 255, 0.2);
+    border-radius: 7px;
+    transition: .5s;
+  }
+  .card:hover {
+    background-color: rgba(202, 211, 255, 0.438);
+    border: 1px solid #007BFF;
+  }
+}
+// #endregion Main Content

@@ -1,0 +1,23 @@
+<div class="row dropdown w-100 input-dropdown">
+  <div class="ps-0 select-search-toggle d-flex flex-row align-items-center border rounded" id="dropdownMenuLink" 
+    (click)="isExpanded = !isExpanded" (clickOutside)="isExpanded = false" data-bs-toggle="dropdown" [attr.aria-expanded]="isExpanded" href="#" role="button">
+    <input type="text" class="form-control border-0 glb-box-shadow-none" [placeholder]=inputPlaceholder [(ngModel)]=pesquisa >
+    <app-svg-storage svgName="seta-cima" svgSize="medium-small" svgColor="#343A40"
+      *ngIf="isExpanded; else notExpanded"></app-svg-storage>
+
+    <ng-template #notExpanded>
+      <app-svg-storage svgName="seta-baixo" svgSize="medium-small" svgColor="#343A40"></app-svg-storage>
+    </ng-template>
+  </div>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+    <li *ngFor="let record of $records" class="dropdown-item overflow-hidden" style="text-overflow: ellipsis;"
+      (click)="sendSelectedRecord(record.ID); pesquisa = ''"> {{ record.LABEL }} </li>
+
+  </ul>
+</div>
+
+<!-- <ng-template #loading>
+  <app-loading></app-loading>
+</ng-template> -->

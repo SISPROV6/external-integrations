@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../src/app/project/css/template.scss';
+
+/* Importing Datepicker SCSS file. */
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+
+/* #region OVERRIDE BOOTSTRAP VARIABLES */
+
+/* #region SPACING */
+
+/* #endregion SPACING */
+
+/* #region THEME COLORS */
+$theme-colors: (
+  "primary": #3767b2,       // Azul principal
+  "secondary": #BD643E,
+  "success": #0F5132,       // Verde principal
+  "danger": #B23737,        // Vermelho principal
+  "warning": #FFC107        // Amarelo principal
+);
+
+/* #endregion THEME COLORS */
+
+/* #region INPUT RELATED COLORS */
+$form-check-input-checked-bg-color: #3767b2;      // Cor de fundo dos inputs de checkbox quando estão "checked"
+
+/* #endregion INPUT RELATED COLORS */
+
+/* #endregion OVERRIDE BOOTSTRAP VARIABLES */
+
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+// * Import do Bootstrap DEVE estar depois dos overrides, pois nos arquivos internos da biblioteca eles possuem a flag de "!default" junto com os valores.
+// * A ideia é que caso um novo valor seja declarado, o que é !default vai ser sobreescrito com esse novo valor,
+// * o !default serve só pra definir um valor caso nenhum outro seja declarado explicitamente. Por isso o import do Bootstrap nesse caso deve estar depois dos overrides.

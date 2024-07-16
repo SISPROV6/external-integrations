@@ -1,0 +1,26 @@
+@use '../../css/global-variables' as global-var;
+@import '../../css/global-styles.scss';
+
+
+// #region CONTENT
+.breadcrumb {
+  font-size: .75rem !important;
+
+  .breadcrumb-item+.breadcrumb-item::before {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+hr { margin-bottom: 12px; }
+
+.bottom-spacing {
+	margin-bottom: 32px !important;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: global-var.$title-font-size;
+  line-height: 33px;
+}
+// #endregion CONTENT

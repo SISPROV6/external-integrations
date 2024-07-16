@@ -1,0 +1,14 @@
+<div #submenu class="header-submenu">
+  <h1 class="titulo pb-3 pt-4">{{ titleSubmenu }}</h1>
+  <div class="itens-list">
+    <ul style="width: 100%">
+      <li *ngFor="let itemList of submenuList; let i = index" [id]="itemList!.id" class="d-flex justify-content-between align-items-center"
+      [class]="i == 0 ? 'mt-1' : ''">
+        <a [routerLink]="itemList!.route != null ? ['/' + itemList!.route] : null" (click)="itemList!.route != null ? recebeParam($event, submenuRef) : sendSecondMenuForFather(itemList!)">
+          <span>{{ itemList!.label }}</span>
+        </a>
+        <!-- <button class="star favoritos" #star (click)="changeStar(star, itemList)"></button> -->
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,184 @@
+<!-- #region MAIN CONTENT -->
+<div class="main col-12">
+
+  <div style="height: 100vh; z-index: 3;" class="sidebar-control position-relative d-flex flex-row" (clickOutside)="closeMenu == true ? onClickedOutside($event, submenu_ref) : closeMenu = true">
+    <div class="sidebar {{_customMenuService.themeColor}} closed" #sidebar>
+      <div class="menu-header">
+        <ul>
+          <li class="mb-3">
+            <div class="logo-hamburguer">
+              <img src="assets/icons/logotipo-sispro.svg" alt="logo-sispro" class="logo-sispro" title="logo" width="136px" height="48px">
+              <button class="button-hamburguer" (click)="openExpansibleMenu(sidebar)"> <img src="assets/icons/menu.svg" alt="menu hamburguer"> </button>
+            </div>
+          </li>
+
+          <!-- #region MÓDULOS -->
+          <li class="mb-3" style="margin-left: 8px; margin-right: 8px">
+            <div class="btn-group">
+              <button (click)="dropdownWasOpened(true)" type="button" class="dropdown-button" data-bs-toggle="dropdown"
+                aria-expanded="false" data-bs-auto-close="outside">
+
+                <ng-container>
+                  <img *ngIf="_customMenuService.moduleImg != ''; else moduleSVG" [src]="_customMenuService.moduleImg" alt="">
+                  <span class="ps-2"> {{ this._customMenuService.moduleName }} <app-svg-storage svgName="seta-direita" svgColor="white" /> </span>
+
+                  <ng-template #moduleSVG>
+                    <app-svg-storage svgColor="white" [svgName]="_customMenuService.moduleSvg"/>
+                  </ng-template>
+                </ng-container>
+
+              </button>
+              <ul class="dropdown-menu" #dropdown_ref>
+                <app-primary-dropdown [buttonWasClicked]="messageIfClicked"></app-primary-dropdown>
+              </ul>
+            </div>
+          </li>
+          <!-- #endregion MÓDULOS -->
+
+          <!-- #region ESTABELECIMENTOS -->
+          <li class="mx-3" style="margin-bottom: 16px;">
+            <div class="icon-estabelecimento">
+              <button class="row justify-content-between bg-transparent border-0"
+                (click)="openModal(modalEstabelecimento, MODAL_ESTABELECIMENTO)"
+                [tooltip]="!sidebar.classList.contains('closed') ? '' : nomeEstabelecimento" placement="right">
+
+                <app-svg-storage class="col-1" svgName="predio" svgColor="white" />
+                <span *ngIf="!sidebar.classList.contains('closed')" class="col-9 ps-2 glb-text-width-160 text-start text-truncate"> {{ nomeEstabelecimento }} </span>
+                <app-svg-storage *ngIf="!sidebar.classList.contains('closed')" class="col-1" svgName="seta-direita" svgColor="white" />
+              </button>
+            </div>
+          </li>
+          <!-- #endregion ESTABELECIMENTOS -->
+
+        </ul>
+
+      </div>
+
+      <!-- #region MENUS DE NAVEGAÇÃO -->
+      <div class="main-menu">
+        <div class="scroll">
+          <div class="list-menu px-2 pb-1">
+
+            <!-- #region MENU DINÂMICO -->
+            <div class="dynamic-menu">
+              <ul #dynamic_menu_items *ngIf="_customMenuService.menuItems; else isLoading">
+                <li *ngFor="let menuItem of _customMenuService.menuItems; let i = index" class="p-1 rounded" (click)="menuItem.isExpandable ? openSubmenu(menuItem, submenu_ref, dynamic_menu) : null" [class.selectedItem]="menuItem.isSelected">
+                    <a [routerLink]="menuItem.route != '' ? menuItem.route : null" [id]="'item'+menuItem.id" [tooltip]="!sidebar.classList.contains('closed') ? '' : menuItem.label" placement="left"
+                      class="w-100 d-flex align-items-center button-icons text-decoration-none p-1" [class]="sidebar.classList.contains('closed') ? 'justify-content-center' : 'justify-content-between'">
+                      
+                      <div class="container">
+                        <app-svg-storage *ngIf="!menuItem.icon.includes('assets/icons'); else iconImg" [svgName]="menuItem.icon" svgColor="white"></app-svg-storage>
+                        <span class="span-main">{{ menuItem.label }}</span>
+                        
+                        <ng-template #iconImg> <img [src]="menuItem.icon" [alt]="'icone: ' + menuItem.label"> </ng-template>
+                      </div>
+
+                      <app-svg-storage *ngIf="(menuItem.children && menuItem.children.length > 0) && !sidebar.classList.contains('closed')" svgName="seta-direita" svgColor="white"></app-svg-storage>
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            <ng-template #isLoading>
+              <li class="spinner-border spinner-border-sm mt-2" role="status" aria-hidden="true"></li>
+            </ng-template>
+            <!-- #endregion MENU DINÂMICO -->
+
+          </div>
+        </div>
+      </div>
+      <!-- #endregion MENUS DE NAVEGAÇÃO -->
+
+
+      <!-- #region FOOTER -->
+      <div class="footer-menu" (mouseenter)="showBalloon = true" (mouseleave)="showBalloon = false"
+      [popover]="popoverContent" placement="right bottom" [outsideClick]="true" containerClass="width: 200px" >
+        <div class="footer-components ps-1 pt-2" [class.open]="showBalloon">
+          <button type="button" class="btn btn-primary">
+            <img *ngIf="footerUserImgSrc; else noUserImg" class="photo-profile ms-1"
+              [src]="['data:image/jpeg;base64,' + footerUserImgSrc]" alt="foto-perfil">
+            <ng-template #noUserImg>
+              <app-svg-storage svgName="contraparte" svgColor="white"></app-svg-storage>
+            </ng-template>
+            <span class="glb-text-width-120 w-auto fw-bold text-start text-truncate ms-1 me-1">
+              {{ footerUserName }}
+            </span>
+          </button>
+        </div>
+      </div>
+      
+      <ng-template #popoverContent>
+        <div class="footer-menu" style="width: 1000px;">
+          <div class="d-flex align-items-center"> 
+            <img *ngIf="footerUserImgSrc; else noUserImg" class="photo-profile"
+              [src]="['data:image/jpeg;base64,' + footerUserImgSrc]" alt="foto-perfil"> 
+            <ng-template #noUserImg>
+              <app-svg-storage svgName="contraparte" svgColor="white"></app-svg-storage>
+            </ng-template>
+            <div class="d-flex flex-column ms-1"> 
+              <div [tooltip]="footerUserName" class="dynamic-container" style="white-space: nowrap; flex-grow: 1;max-width: 200px; font-size: 16px;">{{footerUserName}}</div>
+              <div [tooltip]="footerUserEmail" class="dynamic-container" style="white-space: nowrap; font-size: 12px; flex-grow: 1;max-width: 200px;">{{footerUserEmail}}</div>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-2 mt-2">
+        <div routerLink="meu-perfil"  style="cursor: pointer;" (click)="togglePopover(); $event.stopPropagation()">
+          <app-svg-storage [svgSize]="'small'" svgName="contraparte"></app-svg-storage> Meu Perfil
+        </div>
+        <div class="mt-2" (click)="logout()" style="cursor: pointer;">
+          <app-svg-storage [svgSize]="'small'"  svgName="logout"></app-svg-storage> Sair
+        </div>
+      </ng-template>
+      <!-- #endregion FOOTER -->
+
+    </div>
+
+    <div class="submenu" #submenu_ref>
+      <ng-template [ngIf]="desiredContent !== null">
+        <ng-content *ngTemplateOutlet="desiredContent!; context: {$implicit: submenuList}"></ng-content>
+      </ng-template>
+    </div>
+  </div>
+
+  
+  <div class="main-content col d-flex flex-column align-content-between" id="body-content">
+    <div class="content" style="position: relative;">
+      <router-outlet></router-outlet>
+    </div>
+    <div app-footer></div>
+  </div>
+
+</div>
+<!-- #endregion MAIN CONTENT -->
+
+<!-- #region TEMPLATES -->
+<ng-template #dynamic_menu let-data>
+  <app-dynamic-menu (selectTitle)="catchTitleByChild($event)"
+    (selectSubmenu)="catchSecondMenuByChild($event, submenu_ref, second_submenu)" [submenuList]="data"
+    [titleSubmenu]="titleSubmenu" [submenuRef]="submenu_ref" [recebeParam]="onClickedOutside.bind(this)">
+  </app-dynamic-menu>
+</ng-template>
+
+<ng-template #search_menu>
+  <app-search-submenu></app-search-submenu>
+</ng-template>
+
+<ng-template #notif_menu>
+  <app-notif-submenu></app-notif-submenu>
+</ng-template>
+
+<ng-template #second_submenu>
+  <app-second-submenu (returnSubmenu)="openSubmenu(itemListAux, submenu_ref, dynamic_menu, true)"
+    [submenuRef]="submenu_ref" [titleSecondMenu]="titleSecondMenu"
+    [recebeParam]="onClickedOutside.bind(this)"></app-second-submenu>
+</ng-template>
+
+
+<!-- #region MODAL SELECAO ESTABELECIMENTO -->
+<ng-template #modalEstabelecimento>
+  <selecao-estabelecimentos-modal (onClose)="closeModal(MODAL_ESTABELECIMENTO)"
+    (onSelected)="closeModal(MODAL_ESTABELECIMENTO); updateLastLogEstabelecimento($event);"></selecao-estabelecimentos-modal>
+</ng-template>
+<!-- #endregion MODAL SELECAO ESTABELECIMENTO -->
+
+<!-- #endregion TEMPLATES -->

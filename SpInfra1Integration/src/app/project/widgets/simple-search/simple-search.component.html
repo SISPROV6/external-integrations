@@ -1,0 +1,12 @@
+<div class="d-flex col-12">
+  <div class="input-group search-input w-100" [class.section-input]="focus">
+    <span class="input-group-text search px-2 glb-bg-color-white">
+      <app-svg-storage svgName="lupa" svgColor="gray" svgSize="medium-small"
+        class="d-flex align-items-center"></app-svg-storage>
+    </span>
+    <input name="search" type="text" class="form-control border-left-none ps-0" [placeholder]="placeholder" #search
+      (keyup)="sendSearch(search.value)" (focusin)="focus = true" (focusout)="focus = false">
+  </div>
+  <button type="button" class="btn btn-outline-primary d-flex align-items-center ms-3"
+    (click)="search.value = ''; sendSearch(search.value)"> Limpar </button>
+</div>

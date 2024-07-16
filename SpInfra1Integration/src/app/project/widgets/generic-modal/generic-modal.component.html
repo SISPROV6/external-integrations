@@ -1,0 +1,16 @@
+<div class="p-3 d-flex justify-content-between align-items-center">
+  <h3 class="glb-fs-18 fw-bold mb-0"> {{ modalTitle }} </h3>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="EMIT_CLOSE_MODAL.emit()"></button>
+</div>
+
+<hr class="my-0">
+
+<div class="p-3">
+  <ng-content select=".body-generic-modal"></ng-content>
+</div>
+
+<hr class="my-0">
+
+<div class="p-3 d-flex justify-content-end">
+  <ng-content select=".footer-generic-modal"></ng-content>
+</div>

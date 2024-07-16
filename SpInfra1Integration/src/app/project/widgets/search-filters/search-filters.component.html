@@ -1,0 +1,27 @@
+<!-- #region SEARCH -->
+<div class="input-group search-input">
+  <span class="input-group-text search px-2 glb-bg-color-white">
+    <app-svg-storage svgName="lupa" svgColor="gray" svgSize="medium-small"
+      class="d-flex align-items-center"></app-svg-storage>
+  </span>
+  <input type="text" class="form-control border-left-none ps-0"
+    [placeholder]="placeholder" [(ngModel)]="search"
+    (keyup.enter)="executeGetBySearch()">
+</div>
+<!-- #endregion SEARCH -->
+
+<ng-content></ng-content>
+
+<!-- #region FILTERS -->
+<div class="d-flex filter-buttons ms-3">
+  <button class="btn me-2 clear btn-outline-primary" (click)="clearFilters()"> Limpar </button>
+  <button class="btn ms-2 btn-outline-primary" (click)="executeGetBySearch()"> Pesquisar </button>
+</div>
+<div *ngIf="useIsActive" class="d-flex filter-switch align-items-center ms-3">
+  <label class="form-check-label me-2" for="flexSwitchCheckChecked"> Ativos </label>
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+      [(ngModel)]="isActive" (click)="isActive = !isActive; executeGetBySearch()">
+  </div>
+</div>
+<!-- #endregion FILTERS -->

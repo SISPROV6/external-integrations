@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.chevron {
+    margin-bottom: 16px;
+    margin-left: 14px;
+}
+
+li {
+    img {
+        margin-left: 8px;
+        margin-right: 4px;
+    }
+
+    span {
+        font-weight: bold;
+    }
+}
+
+li a:hover {
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.dropdown-item {
+    margin-left: 32px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}

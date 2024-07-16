@@ -1,0 +1,46 @@
+@use '../../css/global-variables' as var;
+@import '../../css/global-styles.scss';
+
+div.border-gray-first {
+  border: 1px solid var.$border-color;
+  border-radius: 0 4px 4px 0;
+}
+
+div.border-gray-not-first {
+  border: 1px solid var.$border-color;
+  border-radius: 4px;
+}
+
+div.side-card {
+  transform: translateX(1px);
+}
+
+.title-unique {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+div.partial-border-gray {
+  border-top: 1px solid var.$border-color;
+  border-right: none;
+  border-bottom: 1px solid var.$border-color;
+  border-left: 1px solid var.$border-color;
+  background-color: var.$white;
+  border-radius: 4px 0 0 4px;
+}
+
+div.partial-border-transparent {
+  border-top: 1px solid transparent;
+  border-right: none;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+}

@@ -1,0 +1,43 @@
+<div class="d-flex h-100">
+
+  <!-- #region SIDE CARD -->
+  <div class="w-20 side-card">
+
+    <div *ngFor="let title of titleList; index as i" class="px-3 py-2 glb-cursor-pointer d-flex align-items-center"
+      [class]="i == selectedIndex ? 'partial-border-gray' : 'partial-border-transparent'"
+      (click)="i == selectedIndex ? null : sendIndexPage(i)">
+      
+      <!-- #region ÍCONES/ELEMENTOS CUSTOMIZADOS -->
+      <ng-container *ngIf="!useCustomIcons">
+        <app-svg-storage *ngIf="icons.length >= 1" [svgName]="icons[i]"
+          [svgColor]="i == selectedIndex ? 'blue' : 'gray'" class="me-2"></app-svg-storage>
+      </ng-container>
+
+      <ng-container *ngIf="useCustomIcons">
+        <app-svg-storage *ngIf="customIcons.length >= 1" [svgName]="customIcons[i].iconName" [svgSize]="customIcons[i].iconSize"
+          [svgColor]="customIcons[i].iconColor" class="me-3" [ngClass]="customIcons[i].iconTooltip"
+          [tooltip]="customIcons[i].iconTooltip" tooltipPlacement="top"></app-svg-storage>
+      </ng-container>
+      <!-- #endregion ÍCONES/ELEMENTOS CUSTOMIZADOS -->
+
+      <!-- #region TÍTULO E SUBTÍTULO -->
+      <div class="title-unique">
+        <span class="fs-6" [class.glb-text-primary]="i == selectedIndex" [title]="title"> {{ title }} </span>
+        <ng-container *ngIf="subtitleList.length >= 1">
+          <br>
+          <span [class.glb-text-primary]="i == selectedIndex" class="glb-fs-12" [title]="subtitleList[i]"> {{ subtitleList[i] }} </span>
+        </ng-container>
+      </div>
+      <!-- #endregion TÍTULO E SUBTÍTULO -->
+    </div>
+
+  </div>
+  <!-- #endregion SIDE CARD -->
+
+  <!-- #region CONTENT CARD -->
+  <div class="w-80 p-4 border-gray-first glb-overflow-y-scroll glb-remove-scroll-bar" id="content-side-tab">
+    <ng-content></ng-content>
+  </div>
+  <!-- #endregion CONTENT CARD-->
+
+</div>

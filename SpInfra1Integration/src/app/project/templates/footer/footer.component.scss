@@ -1,0 +1,17 @@
+// #region VARIABLES
+$footer-text-color: #2847A0;
+$typography-font-size: 0.875rem;
+// #endregion VARIABLES
+
+// #region FOOTER
+.footer-position {
+  margin: 1.5rem 0;
+  font-size: $typography-font-size;
+  color: $footer-text-color;
+  white-space: nowrap;
+
+  .sispro { margin: 0 5px; }
+
+  .icons .icon-item { margin: 0 10px; }
+}
+// #endregion FOOTER

@@ -1,0 +1,178 @@
+<div class="container-fluid">
+	<div class="row">
+		<!-- Conteúdo da DIV do background -->
+		<div class="col-md-7">
+			<div class="background">
+				<div class="text-position texto-apresentacao ps-5">
+					<h1 class="title" id="title"></h1>
+					<p class="subtitle" id="subtitle"></p>
+				</div>
+			</div>
+		</div>
+		<!-- Conteúdo da DIV de Login -->
+		<div class="col-md-5">
+
+			<div class="div-size">
+				<div class="logotipo">
+					<img style="height: 95px;" src="{{ this._customLoginService.loginLogotipo }}" alt="{{ this._customLoginService.loginAltLogotipo }}" />
+				</div>
+				<form [formGroup]="form" class="form-position">
+					<div class="input-group input-group-lg form-item">
+						<span class="input-group-text" id="basic-addon1"
+							style="padding: 10px; border-radius: 4px 0px 0px 4px"><img src="assets/icons/cloud.svg"
+								alt="cloud icon" /></span>
+						<input type="text" class="form-control" formControlName="dominio" id="dominio"
+							aria-label="Sizing example input" placeholder="Domínio" aria-label="Domínio"
+							aria-describedby="inputGroup-sizing-lg"
+							[class.is-invalid]="FormUtils.isInvalidField(form.get('dominio'))">
+						<app-field-error-message [control]="form.get('dominio')"
+							label="Domínio"></app-field-error-message>
+					</div>
+					<div class="input-group input-group-lg form-item">
+						<span class="input-group-text" id="inputGroup-sizing-lg"
+							style="padding: 10px; border-radius: 4px 0px 0px 4px"><img src="assets/icons/at-sign.svg"
+								alt="at-sign icon" /></span>
+						<input type="text" class="form-control" formControlName="usuario" id="usuario"
+							aria-label="Sizing example input" placeholder="Usuário" aria-label="Usuário"
+							aria-describedby="inputGroup-sizing-lg"
+							[class.is-invalid]="FormUtils.isInvalidField(form.get('usuario'))">
+						<app-field-error-message [control]="form.get('usuario')"
+							label="Usuário"></app-field-error-message>
+					</div>
+					<div class="input-group input-group-lg form-item" style="margin-bottom: 8px;">
+						<span class="input-group-text" id="inputGroup-sizing-lg"
+							style="padding: 10px; border-radius: 4px 0px 0px 4px;"><img src="assets/icons/lock.svg"
+								alt="lock-icon" /></span>
+						<input type="password" class="form-control" formControlName="senha" id="senha"
+							aria-label="Sizing example input" placeholder="Senha" aria-label="senha"
+							aria-describedby="inputGroup-sizing-lg"
+							[class.is-invalid]="FormUtils.isInvalidField(form.get('senha'))">
+						<app-field-error-message [control]="form.get('senha')" label="Senha"></app-field-error-message>
+					</div>
+					<div class="remember-password">
+					<!-- Lembrar Senha
+						<input id="checkboxLembrarSenha" type="checkbox" />
+						<label for="checkboxLembrarSenha"> Lembrar minha senha </label>
+ 					-->
+				</div>
+					<button [disabled]="isLoading" (click)="getServer()" type="submit"
+						class="btn btn-primary btn-acessar btn-lg">
+						<app-loading-button [isLoading]="isLoading"></app-loading-button>
+						<span> Acessar </span>
+					</button>
+					<button type="button" (click)="openForgottenPasswordModal(forgottenPasswordModal)" class="forgotten-password">
+						<span> Esqueceu sua senha? </span>
+					</button>
+				</form>
+				<div class="footer-position">
+					<footer>
+						<span class="footer"> Desenvolvido por <a href="https://www.sispro.com.br/" target="_blank"
+								class="sispro text-primary"> sispro s/a </a></span>
+						<span class="footer"> Serviços e Tecnologia da informação © {{ year }} Todos os direitos reservados </span>
+							<div class="icons">
+								<a href="https://pt-br.facebook.com/SisproERP/" target="_blank">
+									<app-svg-storage class="text-primary" svgName="facebook" svgSize="medium-small"></app-svg-storage>
+								</a>
+								<a href="https://www.instagram.com/accounts/login/?next=/sispro_software/" target="_blank">
+									<app-svg-storage class="text-primary" svgName="instagram" svgSize="medium-small"></app-svg-storage>
+								</a>
+								<a href="https://br.linkedin.com/company/sispro" target="_blank">
+									<app-svg-storage class="text-primary" svgName="linkedin" svgSize="medium-small"></app-svg-storage>
+								</a>
+							</div>
+
+							<div class="d-flex justify-content-center">
+								<a [href]="urlErpConfig" style="text-decoration: none; font-size: 12px;">
+									Configurar ERP
+								</a>
+							</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Template do modal de senha esquecida -->
+<ng-template #forgottenPasswordModal>
+	<form [formGroup]="formFgtPsw">
+		<div class="modal-content" style="box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);">
+			<div class="modal-header p-3">
+				<h4 class="modal-title"> Recuperação de senha </h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+					(click)="closeForgottenPasswordModal()">
+				</button>
+			</div>
+			<div class="modal-body">
+				<label for="inputDominioFgtPsw" class="input-label"> Domínio <span class="text-danger">*</span></label>
+				<input type="text" id="inputDominioFgtPsw" formControlName="dominioFgtPsw"
+					class="form-control input-text" aria-label="Sizing example input" aria-label="Domínio"
+					aria-describedby="inputGroup-sizing-lg"
+					[class.is-invalid]="FormUtils.isInvalidField(formFgtPsw.get('dominioFgtPsw'))">
+				<app-field-error-message [control]="formFgtPsw.get('dominioFgtPsw')" label="Domínio"></app-field-error-message>				
+
+				<label for="inputUsuarioFgtPsw" class="input-label"> Usuário <span class="text-danger">*</span></label>
+				<input type="text" id="inputUsuarioFgtPsw" formControlName="usuarioFgtPsw"
+					class="form-control input-text" aria-label="Sizing example input" aria-label="Usuário"
+					aria-describedby="inputGroup-sizing-lg"
+					[class.is-invalid]="FormUtils.isInvalidField(formFgtPsw.get('usuarioFgtPsw'))">
+				<app-field-error-message [control]="formFgtPsw.get('usuarioFgtPsw')" label="Usuário"></app-field-error-message>				
+		
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn glb-btn-dark-disabled modal-button" (click)="closeForgottenPasswordModal()">
+					<span> Cancelar </span>
+				</button>
+				<button type="button" class="btn btn-primary modal-button" (click)="sendForgottenPassword(recoverPasswordModal);">
+					<span> Continuar </span>
+				</button>
+			</div>
+
+		</div>
+	</form>
+</ng-template>
+
+<!-- Template do modal da recuperação de senha -->
+<ng-template #recoverPasswordModal>
+	<form [formGroup]="formRecPsw">
+		<div class="modal-content" style="box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);">
+			<div class="modal-header p-3">
+				<h4 class="modal-title"> Recuperação de senha </h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+					(click)="closeRecoverPasswordModal()">
+				</button>
+			</div>
+			<div class="modal-body">
+				<label for="inputRecoverCodRecPsw" class="input-label"> Código de recuperação <span class="text-danger">*</span></label>
+				<input type="text" id="inputRecoverCodRecPsw" formControlName="recoverCodeRecPsw"
+					class="form-control input-text" aria-label="Sizing example input" aria-label="Código de recuperação"
+					aria-describedby="inputGroup-sizing-lg"
+					[class.is-invalid]="FormUtils.isInvalidField(formRecPsw.get('recoverCodeRecPsw'))">
+				<app-field-error-message [control]="formRecPsw.get('recoverCodeRecPsw')" label="Código de recuperação"></app-field-error-message>				
+
+				<label for="inputSenhaRecPsw" class="input-label"> Digite uma Nova Senha <span class="text-danger">*</span></label>
+				<input type="password" id="inputSenhaRecPsw" formControlName="senhaRecPsw"
+					class="form-control input-text" aria-label="Sizing example input" aria-label="Digite uma Nova Senha"
+					aria-describedby="inputGroup-sizing-lg"
+					[class.is-invalid]="FormUtils.isInvalidField(formRecPsw.get('senhaRecPsw'))">
+				<app-field-error-message [control]="formRecPsw.get('senhaRecPsw')" label="O campo Digite uma Nova Senha"></app-field-error-message>				
+		
+				<label for="inputConfirmSenhaRecPsw" class="input-label"> Confirme sua Nova Senha <span class="text-danger">*</span></label>
+				<input type="password" id="inputConfirmSenhaRecPsw" formControlName="confirmSenhaRecPsw"
+					class="form-control input-text" aria-label="Sizing example input" aria-label="Confirme sua Nova Senha"
+					aria-describedby="inputGroup-sizing-lg"
+					[class.is-invalid]="FormUtils.isInvalidField(formRecPsw.get('confirmSenhaRecPsw'))">
+				<app-field-error-message [control]="formRecPsw.get('confirmSenhaRecPsw')" label="O campo Confirme sua Nova Senha"></app-field-error-message>				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn glb-btn-dark-disabled modal-button" (click)="closeRecoverPasswordModal()">
+					<span> Cancelar </span>
+				</button>
+				<button type="button" class="btn btn-primary modal-button" (click)="sendRecoverPassword()">
+					<span> Continuar </span>
+				</button>
+			</div>
+
+		</div>
+	</form>
+</ng-template>

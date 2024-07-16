@@ -1,0 +1,111 @@
+<div class="main-container">
+  <div class="modal-header modal-style modal-dialog-centered">
+    <h4 class="modal-title pull-left color-modal" style="font-size: 20px; font-weight: bold;"> Selecione um
+      estabelecimento </h4>
+    <button (click)="closeSelf()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-message">
+      <div class="search-and-filters d-flex flex-row align-items-center justify-content-between">
+        <div class="d-flex flex-row w-100">
+          <div class="input-group">
+            <span class="input-group-text px-2" id="basic-addon1"
+              style="background-color: transparent; border-right: none;">
+              <app-svg-storage svgName="lupa" svgColor="gray"></app-svg-storage>
+            </span>
+            <input type="text" class="form-control border-start-0 ps-0" id="pesquisaInput" #pesquisa
+              placeholder="Digite o Código" (keyup.enter)="refreshList(pesquisa.value)">
+          </div>
+        </div>
+
+        <div class="filters d-flex align-items-center justify-content-between ms-3">
+          <div class="search-buttons d-flex flex-row align-items-center my-0 mx-0">
+            <button id="clearFilterBtn" class="btn btn-outline-primary ms-0 no-hover-btn me-2"
+              (click)="pesquisa.value = ''; refreshList(pesquisa.value)"> Limpar </button>
+            <button id="searchFilterBtn" class="btn btn-primary me-0" (click)="refreshList(pesquisa.value)"> Pesquisar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-list w-100 mt-3" *ngIf="$estabelecimentosList; else loading">
+        <table class="table table-bordered table-hover mb-0">
+          <thead class="fs-6">
+            <tr>
+              <th scope="col" class="col-11 align-middle th">Estabelecimento <span
+                  class="text-primary fst-italic">(duplo-clique para selecionar)</span></th>
+              <th scope="col" class="col-1 align-middle text-center th">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="$estabelecimentosList.length > 0; else emptyList">
+            <tr
+              *ngFor="let estabelecimento of $estabelecimentosList | paginate: { itemsPerPage: itemsPerPage, currentPage: page }"
+              (dblclick)="selectEstabelecimento(estabelecimento.ID, estabelecimento.NOMEEXIBICAO)">
+              <td><span class="row-name"> {{ estabelecimento.CODIGO }} - {{ estabelecimento.NOMEEXIBICAO }} </span>
+                <span class="subname"> {{ estabelecimento.IS_MATRIZ ? "Matriz " : null }} CNPJ: {{ estabelecimento.CNPJ
+                  }} </span></td>
+              <td class="text-center align-middle">
+                <div class="action-icons d-flex flex-row align-items-center justify-content-around">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                      tooltip="Estabelecimento padrão" [checked]="estabelecimento.IS_DEFAULT"
+                      style="transform: translateY(3px); height: 1rem; width: 28px;" #isDefaultRow
+                      (click)="estabelecimento.IS_DEFAULT = !estabelecimento.IS_DEFAULT; defineDefaultEstabelecimento(estabelecimento.ID, estabelecimento.IS_DEFAULT)">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+          <!-- #region EMPTY LIST CELL -->
+          <ng-template #emptyList>
+            <tbody>
+              <tr>
+                <td colspan="2" class="align-middle"><span class="row-name fw-light fst-italic text-center"> {{
+                    response_messages.emptyMessage }} </span></td>
+              </tr>
+            </tbody>
+          </ng-template>
+          <!-- #endregion EMPTY LIST CELL -->
+        </table>
+
+        <!-- #region PAGINATION -->
+        <div class="d-flex justify-content-end mt-2" *ngIf="$estabelecimentosList.length > 0">
+          <div class="d-flex align-items-center">
+            <label class="me-2" style="white-space: nowrap;">Itens por página</label>
+            <select class="form-select select-search" (change)="onSelectChange($event)">
+              <option class="selected" value="10" selected>10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+
+          <pagination-controls class="sp-pagination mt-3" (pageChange)="page = $event"
+            previousLabel="«&nbsp;&nbsp;&nbsp;" nextLabel="&nbsp;&nbsp;&nbsp;»" [maxSize]="5">
+          </pagination-controls>
+        </div>
+        <!-- #endregion PAGINATION -->
+        
+      </div>
+
+      <!-- <div class="d-flex justify-content-between align-items-center mt-3">
+        <span style="color: #6C757D"> Registros {{$estabelecimentosList.length}} de {{$estabelecimentosList.length}} </span>
+        <nav aria-label="...">
+          <ul class="pagination mb-0">
+            <li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1">Anterior</a> </li>
+            <li class="page-item active"> <a class="page-link" href="#">1</a> </li>
+            <li class="page-item"> <a class="page-link" href="#">2</a> </li>
+            <li class="page-item"> <a class="page-link" href="#">3</a> </li>
+            <li class="page-item"> <a class="page-link" href="#">Próximo</a> </li>
+          </ul>
+        </nav>
+      </div> -->
+
+
+      <ng-template #loading>
+        <app-loading></app-loading>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<accordion [isAnimated]="true" [class.mt-3]="haveMarginTop">
+	<accordion-group [panelClass]="customClass" [isOpen]="isOpen" style="padding: 0px">
+		<button class="btn btn-link btn-block justify-content-between d-flex w-100 shadow-none"
+			style="align-items:center; padding-left: 0px; padding-right: 0px;" accordion-heading type="button">
+			<div>
+				<h5> {{name}} </h5>
+			</div>
+			<div *ngIf="haveArrow">
+				<span class="badge badge-secondary bg-secondary float-right pull-right">
+					<img src="assets/icons/down-arrow.svg" alt="" class="arrow-pos-size" />
+				</span>
+			</div>
+		</button>
+
+		<div>
+			<ng-content></ng-content>
+		</div>
+	</accordion-group>
+</accordion>

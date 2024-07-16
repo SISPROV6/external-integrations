@@ -1,0 +1,31 @@
+<div style="width: calc(100% + 32px); margin-left: -16px; z-index: 3;" class="header pt-3 px-3 border-1" [class.sticky-top]="isSticky" [style.background-color]="modoAditamento ? '#2847a0' : bgColor">
+	<section id="header-and-buttons">
+		<div class="header-pos">
+			<div class="d-flex flex-column" [class.header-text-light]="modoAditamento">
+	
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb p-0 mb-0">
+						<li class="breadcrumb-item" [class.header-text-light]="modoAditamento"><a>{{ menuOption }}</a></li>
+						<li class="breadcrumb-item" [class.header-text-light]="modoAditamento" *ngIf="actionSubject == undefined">{{ moduleSubject }}</li>
+						<li class="breadcrumb-item" [class.header-text-light]="modoAditamento" *ngIf="actionSubject != undefined"><a (click)="returnToList()" [style.color]="modoAditamento ? '#fff' : '#2847A0'">{{ moduleSubject }}</a></li>
+						<li class="breadcrumb-item active" [class.header-text-light]="modoAditamento" aria-current="page" *ngIf="actionSubject != undefined">{{ actionSubject }}</li>
+					</ol>
+				</nav>
+				
+				<h1 *ngIf="pageTitle; else loadingTitle" class="mb-0">{{ pageTitle != "" ? pageTitle : "Título da página indisponível" }}</h1>
+				<ng-template #loadingTitle> <h1 class="placeholder-glow"><span class="placeholder col-12"></span></h1> </ng-template>
+			</div>
+
+			<ng-content></ng-content>
+
+		</div>
+	
+		<hr>
+	
+		<!-- <div *ngIf="isAuditVisible" class="auditoria fw-bold d-flex flex-row align-items-center">
+			<app-svg-storage svgName="auditoria"></app-svg-storage>
+			<a class="text-decoration-none ms-2 text-dark"> Auditoria </a>
+		</div> -->
+	</section>
+</div>
+

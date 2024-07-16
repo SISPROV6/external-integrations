@@ -1,0 +1,49 @@
+<ng-container [ngSwitch]="typeInput">
+
+  <ng-container *ngSwitchCase="'date'">
+    <input type="date" class="form-control"
+      [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'integer'">
+    <input type="text" class="form-control" [mask]="intMask" placeholder="Números Inteiros"
+      [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'decimal'">
+    <input type="text" class="form-control" currencyMask [options]="{ precision: qtDecimais }" placeholder="Conteúdo Decimal"
+      [(ngModel)]="txConteudoCarac" (keyup)="sendEventUpdateCoCarac()">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'phone'">
+      <input type="text" class="form-control" [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()"
+      [showMaskTyped]="false" mask="(00) 0000-0000||(00) 00000-0000" [dropSpecialCharacters]="false">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'text'">
+    <textarea type="text" maxlength="100" class="form-control" placeholder="Texto Livre" rows="1"
+      [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()"></textarea>
+    <div class="d-flex justify-content-end">
+      <span class="text-muted mt-1 glb-fs-14">Caracteres restantes: {{ 100 - txConteudoCarac.length }}</span>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'longtext'">
+    <textarea type="text" maxlength="1000" class="form-control" placeholder="Texto Livre"
+      [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()"></textarea>
+    <div class="d-flex justify-content-end">
+      <span class="text-muted mt-1 glb-fs-14">Caracteres restantes: {{ 1000 - txConteudoCarac.length }}</span>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'time'">
+    <input type="time" class="form-control" placeholder="Horário"
+      [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'datetime'">
+    <input type="datetime-local" class="form-control" placeholder="Data e hora"
+      [(ngModel)]="txConteudoCarac" (change)="sendEventUpdateCoCarac()">
+  </ng-container>
+
+</ng-container>

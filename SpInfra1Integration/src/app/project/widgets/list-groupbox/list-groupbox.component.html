@@ -1,0 +1,29 @@
+<div (clickOutside)="onCloseSelectInput()">
+  <div id="main-box-select" class="main-box justify-content-between"
+    (click)="showFakeSelectOption = !showFakeSelectOption">
+    <span class="fake-placeholder"
+      [style]="valueInput == '' ? 'color: #999' : null"> {{ valueInput == '' ? 'Selecione uma opção' : valueInput }} </span>
+    <app-svg-storage svgName="seta-baixo" [svgSize]="18"></app-svg-storage>
+  </div>
+  <div [class.d-none]="!showFakeSelectOption" class="fake-select-option shadow" [style]="'width: ' + getWidthByElement()">
+    <div class="input-group search-input" [class.box-focus]="focusBox">
+      <span class="input-group-text search px-2 glb-bg-color-white">
+        <app-svg-storage svgName="lupa" svgColor="gray" svgSize="medium-small"
+          class="d-flex align-items-center"></app-svg-storage>
+      </span>
+      <input type="text" class="form-control border-left-none ps-0" (input)="getListToShow()" [(ngModel)]="search"
+        (focusin)="focusBox = true" (focusout)="focusBox = false" id="inputSearch">
+    </div>
+    <div class="father-items-div mt-2">
+      <div *ngFor="let itemFather of listToShow">
+        <span class="ms-2 fw-bold item-father"> {{itemFather.LABEL}} </span>
+        <br>
+        <div *ngFor="let itemChild of itemFather.CHILD" class="item-child"
+          (click)="getValueSelect(itemChild.LABEL, itemChild.ID)">
+          <span class="ms-4"> {{ itemChild.LABEL }} </span>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

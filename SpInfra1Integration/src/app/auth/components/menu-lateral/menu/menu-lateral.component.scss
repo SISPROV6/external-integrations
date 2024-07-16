@@ -1,0 +1,690 @@
+@use "../../../../project/css/global-variables" as globalvar;
+@use "../../../../project/css/sispro-variables.scss" as sisvar;
+
+@import "../../../../project/css/global-styles.scss";
+
+// #region VARIABLES
+$blue-light: #3265ee;
+// #endregion VARIABLES
+
+.main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BBBBBB;
+  border-radius: 16px;
+}
+
+.main-content {
+  width: 100%;
+  z-index: 0;
+  overflow-y: auto;
+  overflow: overlay;
+  height: 100vh;
+
+  .content {
+    padding: 0 16px 16px 16px;
+    background-color: #eee !important;
+  }
+}
+
+.disable-scroll {
+  overflow-y: hidden;
+}
+
+// STYLE GERAL
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Open sans", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+span {
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+  white-space: nowrap;
+}
+
+// DROPDOWN
+
+.dropdown-button {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #3265ee /* default */;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+
+  span {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.dropdown-menu {
+  width: 212px;
+  border-radius: 8px;
+
+  li {
+    margin: 16px 8px;
+
+    a {
+      font-size: 14px;
+    }
+
+    a:hover {
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+
+  .dropdown-divider {
+    height: 0;
+  }
+}
+
+.link-portal {
+  color: sisvar.$primary-dark-bg;
+  text-decoration: underline;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+// BODY CONTAINER 
+.container {
+  display: flex;
+  width: max-content;
+}
+
+// SIDEBAR ABERTA 
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  grid-template-rows: min-content;
+  box-sizing: border-box;
+  transition: width 0.5s;
+  background-color: sisvar.$primary-dark-bg;
+  max-width: inherit;
+
+  .footer-menu {
+    justify-content: flex-end;
+  }
+}
+
+// HEADER SIDEBAR ABERTA 
+
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  padding: 32px 0 0px 0;
+  background-color: sisvar.$primary-dark-bg;
+  
+  ul li {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  ul > li:last-child
+  {
+    border-bottom: 1px solid #3265ee /* default */;
+    padding-bottom: 15px;
+    height: auto;
+  }
+}
+
+.dropdown {
+  margin: 0;
+}
+
+.btn-group {
+  width: 100%;
+}
+
+.sidebar.closed .menu-header ul li {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.sidebar.closed .menu-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-estabelecimento {
+  button {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    span:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  margin: 0 20px;
+}
+
+.logo-hamburguer {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 8px;
+
+  .button-hamburguer {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+.sidebar.closed .logo-hamburguer {
+  justify-content: center;
+  margin-right: 0;
+}
+
+// CONTEÚDO BODY SIDEBAR ABERTA
+
+.scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 20%;
+  margin-right: 2px;
+}
+
+.list-menu {
+  padding-left: 16px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+
+  .text-closed {
+    padding-top: 15px;
+    display: none;
+    color: #fff;
+  }
+
+  .text-opened {
+    color: #fff;
+    font-size: 12px;
+    padding-top: 15px;
+    visibility: visible;
+    white-space: nowrap;
+  }
+
+  .li-main {
+    padding: 10px 7px;
+    border-radius: 8px;    
+  }
+
+  .onSelect {
+    background-color: #3265ee /* default */;
+  }
+
+  div.static-menu > ul > li:first-child {
+    margin-top: 16px;
+  }
+
+  .span-main {
+    font-size: 14px;
+    margin-left: 8px;
+    opacity: 1;
+    pointer-events: auto;
+    // white-space: nowrap;
+    white-space: break-spaces;
+  }
+
+  .span-main:hover {
+    font-weight: bold;
+  }
+
+  .list-options span:hover {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid $blue-light /* default */;
+    visibility: hidden;
+  }
+}
+
+.selectedItem {
+  background-color: $blue-light /* default */;
+
+  span {
+    font-weight: bold;
+    background-color: transparent;
+  }
+}
+
+.notif {
+  padding: 2px 13px;
+  margin-bottom: none;
+  background-color: black;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.sidebar.closed .chevron {
+  display: none;
+}
+
+.sidebar.closed .icon-estabelecimento {
+  margin: 0;
+
+  button {
+    justify-content: center;
+
+    img {
+      margin: 0;
+    }
+  }
+}
+
+.align-chevron {
+  width: 100%;
+  text-align: justify;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selected-color {
+  background-color: #3265ee;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 20%;
+  // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button-icons {
+  border: none;
+  background-color: transparent;
+}
+
+// FOOTER SIDEBAR ABERTA 
+
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8px;
+  //box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+
+  .footer-components {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid $blue-light /* default */;
+    white-space: nowrap;
+    align-items: center;
+
+    .button-closed {
+      display: none;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    border-radius: 8px;
+  }
+
+  .points {
+    padding: 4px 0px 4px 0px;
+    margin: 4px 0 4px 0;
+    border-radius: 8px;
+  }
+
+  .photo-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0px 0px 0px 0px;
+  }
+
+  .open-user {
+    background-color: $blue-light /* default */;
+  }
+}
+
+// SUBMENU 
+
+.submenu {
+  width: 341px;
+  display: none;
+  background-color: $blue-light /* default */;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+
+  // HEADER SUBMENU
+  ul {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 26px 0px 24px;
+
+    li {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 22px;
+      padding-bottom: 18px;
+    }
+  }
+
+  // CORPO SUBMENU
+
+  .itens-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .favoritos {
+      cursor: pointer;
+    }
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  // FOOTER SUBMENU
+
+  .footer-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 16px;
+    overflow: hidden;
+    //box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+
+    .footer-components {
+      border-top: 1px solid $blue-light /* default */;
+      padding-top: 16px;
+      padding-left: 17px;
+      white-space: nowrap;
+    }
+
+    button {
+      position: relative;
+      left: 35%;
+      border: none;
+      background-color: transparent;
+    }
+
+    .photo-profile {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin: 0px 0px 0px 0px;
+    }
+  }
+
+  .footer-components {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    position: relative;
+    left: 10%;
+    border: none;
+    background-color: transparent;
+  }
+
+  .photo-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0px 0px 0px 0px;
+  }
+}
+
+.submenu.opened-sub {
+  z-index: 1;
+  display: flex;
+  position: absolute;
+  left: 100%;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.submenu-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 14px;
+  border-top: 1px solid #2847a0 /* default */;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+
+  .subfooter-components {
+    padding-top: 16px;
+  }
+
+  span {
+    font-weight: 700;
+    padding-left: 10px;
+  }
+}
+
+// SUBMENUS ESTÁTICOS 
+
+.search-bar {
+  max-width: 368px;
+  height: 38px;
+  margin-top: 24px;
+  border: 1px solid #ced4da;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.opened-notif-sub {
+  min-width: 452px;
+  display: none;
+  background-color: $blue-light /* default */;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+// SIDEBAR FECHADA
+.sidebar.closed {
+  max-width: 73px;
+
+  span {
+    display: none;
+  }
+}
+
+// HEADER SIDEBAR FECHADA
+
+.sidebar.closed {
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .logo-sispro {
+    display: none;
+  }
+}
+
+// BODY SIDEBAR FECHADA
+
+.sidebar.closed .list-menu {
+  padding: 0;
+  margin-left: 0px;
+  margin-right: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .text-closed {
+    padding-bottom: 11px;
+    visibility: visible;
+    display: block;
+  }
+
+  .text-opened {
+    display: none;
+    font-size: 8px;
+  }
+
+  .chevron {
+    display: none;
+  }
+}
+
+.sidebar.closed .favoritos {
+  display: none;
+}
+
+// FOOTER SIDEBAR FECHADA
+
+.sidebar.closed {
+  .footer-components .button-opened {
+    display: none;
+  }
+
+  .footer-components .button-closed {
+    display: block;
+  }
+
+  .button-icons {
+    border: none;
+    background-color: transparent;
+  }
+
+  .footer-components {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    display: block;
+  }
+
+  .photo-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0px 0px 0px 0px;
+  }
+}
+
+.sidebar-control {
+  height: 100vh;
+  max-width: 227.667px;
+
+  .main-content.closed {
+    margin-left: 0;
+  }
+}
+
+// Este comando existe no SCSS global, porém ele causa conflitos com o SCSS desta página, portanto o trouxe para cá
+.glb-text-width-120 { max-width: 120px; }
+
+
+.profile-picture {
+  display: inline-block; 
+  position: relative; 
+  width: 100px; 
+  height: 100px; 
+  border-radius: 50%; 
+  overflow: hidden; 
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.image-div {
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+ 
+  #photoUser {
+    width: 146px;
+    height: 146px;
+    top: -1px;
+    left: -1px;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-color: transparent;
+  }
+}
+
+.dynamic-container {
+  display: inline-block; 
+  white-space: nowrap; 
+  overflow: hidden; 
+}
+
+.custom-popover {
+  width: 1000px; 
+}
+
+
+// =================================
+// #region Customizações de projeto
+
+@import "../../../../project/custom/menu/css/custom-menu-styles.scss";
+
+// #endregion Customizações de projeto
+// =================================

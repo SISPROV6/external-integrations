@@ -1,0 +1,49 @@
+// ----- CORES PRINCIPAIS -----
+// Usadas para os elementos e trechos principais como, por exemplo, cores de containers, cores de fundo, entre outros...
+$white: #ffffff;
+$gray: #e9ecef;
+
+//PRIMÁRIAS
+$primary-dark-bg: #213B70; //Menu
+$primary-medium-bg: #2847A0;
+$primary-light-bg: #3767b2;
+$primary-disabled-bg: #7395C9;
+$neutral-bg: #F5F5F5; //Background do sistema
+
+//TEXTOS
+$primary-text-color: #212529;
+$disabled-text-color: #6C757D;
+$white-text-color: #fff;
+$primary-text-medium: #2847A0;
+$primary-text-light: #3767B2;
+
+//OUTLINES
+$outline-error: #B23737;
+$outline-normal: #CED4DA;
+$outline-dark: #BAC3CC;
+$outline-active: #3767B2;
+
+//ALERTAS
+$alert-primary-text: #084298;
+$alert-primary-bg: #CFE2FF;
+$alert-secondary-text: #055160;
+$alert-secondary-bg: #CFF4FC;
+$alert-error-text: #842029;
+$alert-error-bg: #F8D7DA;
+$alert-success-text: #0F5132;
+$alert-success-bg: #D1E7DD;
+$alert-warning-text: #664D03;
+$alert-warning-bg: #FFF3CD;
+$alert-grey-text: #41464B;
+$alert-grey-bg: #E2E3E5;
+
+//BORDA
+$border-container: #C4C4C4;
+
+/*----------------------------*\
+       FONTES E TIPOGRAFIA
+\*----------------------------*/
+$title-font-size: 1.5rem;
+$input-font-size: 1rem;
+$audit-font-size: .75rem;
+$search-buttons-font-size: 0.875rem;

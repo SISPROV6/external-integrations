@@ -1,0 +1,8 @@
+@import '../../css/global-styles.scss';
+
+// * Este trecho está aqui pois, por algum motivo, o componente fica 12px para a esquerda, mesmo quando o limite do
+// * componente pai é excedido...
+// TODO Encontrar uma forma de resolver este problema sem ser desta forma improvisada...
+.row.dropdown.input-dropdown {
+  left: 12px;
+}

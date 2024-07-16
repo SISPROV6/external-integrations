@@ -1,0 +1,16 @@
+<div class="header-submenu">
+  <h1 class="titulo pb-3 pt-4 d-flex">
+    <span style="font-weight: 400; cursor: pointer;" (click)="returnToSubmenuDynamic()">{{ firstTitle }} &gt;&nbsp;</span>
+    <span style="cursor: pointer;" (click)="returnToSubmenuDynamic()">{{ secondTitle }}</span>
+  </h1>
+  <div class="itens-list">
+    <ul style="width: 100%">
+      <li *ngFor="let itemList of submenuList; let i = index" class="d-flex justify-content-between align-items-center">
+        <a [routerLink]="['/' + itemList!.URL]" (click)="recebeParam($event, submenuRef)">
+          <span>{{ itemList!.Label }}</span>
+        </a>
+        <!-- <button class="star favoritos" #star (click)="changeStar(star, itemList)"></button> -->
+      </li>
+    </ul>
+  </div>
+</div>

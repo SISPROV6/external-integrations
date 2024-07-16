@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-end mt-2" *ngIf="list.length > 0">
+  <div class="d-flex align-items-center">
+    <label for="select-{{ paginationInstance.id }}" class="me-2">Itens por página</label>
+    <select id="select-{{ paginationInstance.id }}" class="form-select select-search" (change)="onSelectChange($event)">
+      <option class="selected" value="10" selected> 10 </option>
+      <option value="25"> 25 </option>
+      <option value="50"> 50 </option>
+    </select>
+  </div>
+
+  <pagination-controls class="sp-pagination mt-3" (pageChange)="changePageAndEmitValue($event)" [id]="paginationInstance.id!"
+    previousLabel="«&nbsp;&nbsp;&nbsp;" nextLabel="&nbsp;&nbsp;&nbsp;»" [maxSize]="5">
+  </pagination-controls>
+</div>

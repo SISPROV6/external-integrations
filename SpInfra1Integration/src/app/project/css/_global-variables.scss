@@ -1,0 +1,45 @@
+// ----- CORES PRINCIPAIS -----
+// Usadas para os elementos e trechos principais como, por exemplo, cores de containers, cores de fundo, entre outros...
+$white: #ffffff;
+$gray: #e9ecef;
+
+$main-color: #007BFF;
+$basic-text-color: #212529;
+$text-color: #0D6EFD;
+
+$footer-text-color: #2847A0;
+
+$border-color: #dee2e6;
+$input-color: #6C757D;
+$header-table: #C4C4C4;
+
+$hover: #BDD4EC;
+
+$background-pdf: #E0E6EC;
+
+$steps-text-color: #6C757D;
+
+$default-border: 1px solid rgba(15, 15, 15, 0.3);
+// ----- CORES SECUNDÁRIAS -----
+// Usadas para componentes e trechos separados como, por exemplo, cores de botões secundários, inputs, trechos mais 
+// isolados de componentes, entre outros...
+
+// #region CORES DE CÍRCULOS DE STATUS
+$status-active-color: #28A745;
+$status-inactive-color: #a72828;
+
+$sisglobal-fase-rascunho: #fff;
+$sisglobal-fase-elaboracao: #6c757d;
+$sisglobal-fase-aprovacao: #007bff;
+$sisglobal-fase-assinatura: #ffc107;
+$sisglobal-fase-vigente: #198754;
+$sisglobal-fase-encerrado: #dc3545;
+// #endregion CORES DE CÍRCULOS DE STATUS
+
+
+
+// ----- FONTES -----
+$title-font-size: 1.5rem;
+$input-font-size: 1rem;
+$audit-font-size: .75rem;
+$search-buttons-font-size: 0.875rem;

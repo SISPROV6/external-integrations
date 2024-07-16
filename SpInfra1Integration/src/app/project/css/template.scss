@@ -1,0 +1,284 @@
+/* #region VARIABLES */
+:root {
+	--text-color: #212529;
+	--main-color: #007BFF;
+	--footer-color: #2847A0;
+	--border-color: #C4C4C4;
+	--background-color: #EEEEEE;
+
+	--main-padding: 25px;
+
+	--8-pixel-Y-margin: .5rem 0;
+	--8-pixel-X-margin: 0 .5rem;
+	
+	--8-pixel-sizing: .5rem;
+	--4-pixel-sizing: .25rem;
+
+	/* Variáveis de estilo do novo figma. (29/06/2023) */
+	--sp-default: #2847A0;
+	--sp-primary: #0D6EFD;
+	--sp-primary-disabled: #5697F5;
+	--sp-hover: #CCE5FF;
+	--sp-secondary: #BD643E;
+	--sp-secondary-placeholder: #6C757D;
+	--sp-secondary-disabled: #2847A0;
+	--sp-success: #198754;
+	--sp-success-disabled: #5EA787;
+	--sp-danger: #DC3545;
+	--sp-danger-disabled: #DD727D;
+	--sp-warning: #FFC107;
+	--sp-warning-disabled: #F3CD55;
+	--sp-info: #0DCAF0;
+	--sp-light: #F8F9FA;
+	--sp-light-disabled: #EFF1F3;
+	--sp-dark-text: #212529;
+	--sp-dark-text-disabled: #63676B;
+	--sp-white: #FFFFFF;
+	--sp-tooltip: #191919;
+	--sp-input-outline: #C7C7C7;
+	--sp-background-neutral: #F5F5F5;
+	--sp-green: #009EAB;
+
+}
+
+/* #endregion VARIABLES */
+
+/* #region FONTS */
+* {
+  font-family: 'Open-Sans', Arial, Helvetica, sans-serif !important;
+}
+
+
+@font-face {
+  font-family: 'Open-Sans';
+  src: url('../../../assets/fonts/OpenSans/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Open-Sans-Bold';
+  src: url('../../../assets/fonts/OpenSans/OpenSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Open-Sans-ExtraBold';
+  src: url('../../../assets/fonts/OpenSans/OpenSans-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Open-Sans-Light';
+  src: url('../../../assets/fonts/OpenSans/OpenSans-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Open-Sans-Italic';
+  src: url('../../../assets/fonts/OpenSans/OpenSans-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Open-Sans-SemiBold';
+  src: url('../../../assets/fonts/OpenSans/OpenSans-SemiBold.ttf');
+}
+/* #endregion FONTS */
+
+
+/* #region HEADER */
+
+*.action-buttons > button {
+	margin: var(--8-pixel-X-margin);
+	height: 2.375rem;
+	font-size: 1rem;
+}
+
+*.action-buttons > button > svg { margin-right: var(--8-pixel-sizing); }
+
+*.action-buttons > button:first-child { margin-left: 0; }
+*.action-buttons > button:last-child { margin-right: 0; }
+
+/* #endregion HEADER */
+
+/* #region INPUTS */
+
+/*input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: ;
+}*/
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+form input, form select, form textarea {
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	resize: none;
+}
+
+form .input-row { margin: var(--8-pixel-Y-margin); }
+
+/* #endregion INPUTS */
+
+/* #region TOOLTIPS */
+
+.tooltip {
+	/* Comentei esta linha pois era o que azia o tooltip padrão do 
+	Bootstrap não aparecer por algum motivo... 
+	se quebrar alguma coisa, pode descomentar */
+	
+	/* position: relative; */
+	display: inline-block;
+	opacity: 1;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: max-content;
+	background-color: #343a40;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 8px 8px 8px;
+	position: absolute;
+	z-index: 1;
+	top: -5px;
+	left: 110%;
+}
+
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent #343a40 transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+/* #endregion TOOLTIPS */
+
+
+/* #region BUTTONS */
+
+/* Adicionem esta classe para todos os botões de "Cancelar" no Header, ela irá 
+   servir para "desativar" o efeito de 'hover' dos botões que sejam de 'outline'.
+   O ND irá cobrar para que este comportamento se torne um padrão */
+button.no-hover-btn:hover { background-color: transparent; color: #007BFF; }
+
+/* #endregion BUTTONS */
+
+/* #region Tema NgxBootstrap */
+
+/* Utilizem esta parte para customizar os elementos do ngx-bootstrap para ficar do jeito que queremos */
+
+.theme-sispro-portal .bs-datepicker-head {
+	background-color: #0b5ed7;
+}
+
+.theme-sispro-portal .bs-datepicker-body table td.week span {
+	color: #0b5eb8
+}
+
+.theme-sispro-portal .bs-datepicker-body table th {
+	font-size: 13px;
+	color: #0b5eb8;
+	font-weight: 400;
+	text-align: center;
+}
+
+.theme-sispro-portal .bs-datepicker-body table td {
+	color: #2A4661;
+}
+
+.theme-sispro-portal .bs-datepicker-body table td.is-highlighted:not(.disabled):not(.selected) span, .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected) {
+	background-color: #0489ff2b;
+	transition: 0.5s;
+}
+
+.theme-sispro-portal .bs-datepicker-body table td span {
+	border-radius: 0.25rem;
+}
+
+.theme-sispro-portal .bs-datepicker-body table td span.selected {
+	background-color: #0b5ed7 !important;
+}
+
+.theme-sispro-portal .btn-link {
+	color: #0b5ed7 !important;
+	font-weight: 400;
+}
+
+/* #endregion Tema NgxBootstrap */
+
+/* #region PROJETO */
+
+html, body {
+	height: 100%;
+}
+a { cursor: pointer; }
+
+.card.customClass,
+.card.customClass .card-header,
+.panel.customClass {
+	border-radius: 10px;
+	background-color: white;
+	
+
+}
+.card-header{
+	padding: .75rem, .75rem;
+	height: 53px;
+}
+
+.tox .tox-tinymce {
+    height: 528px !important;
+    overflow: auto;
+}
+
+.datatable-header-inner {
+    background-color: #E9ECEF !important;
+    width: 100% !important;
+}
+
+.datatable-body-cell-label {
+    white-space: nowrap;
+}
+
+.ngx-datatable .datatable-row-center {
+    display: block !important;
+}
+
+.ngx-datatable .datatable-header-inner {
+    display: block !important;
+}
+
+.datatable-header-cell-wrapper span {
+    font-weight: bold !important;
+    font-size: 16px;
+}
+
+.datatable-header-cell .resizeable .sortable {
+    width: 0 !important;
+    margin: 200px !important;
+}
+
+.datatable-header-inner {
+    border: 1px solid #dee2e6 !important;
+}
+
+.datatable-row-center {
+    width: 100% !important;
+}
+
+.datatable-header-cell-template-wrap {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-color: #c4c4c4;
+    border-bottom: none;
+}
+
+/* #endregion PROJETO */

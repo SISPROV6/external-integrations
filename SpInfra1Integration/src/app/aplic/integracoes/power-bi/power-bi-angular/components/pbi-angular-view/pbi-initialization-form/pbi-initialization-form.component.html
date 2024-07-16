@@ -1,0 +1,36 @@
+<form [formGroup]="reportForm" class="mb-3">
+   <div class="row mb-3">
+      <div class="col-6">
+         <label for="workspaceName" class="form-label fw-bold">Nome da Workspace<span class="text-danger">*</span></label>
+         <input class="form-control" id="workspaceName" formControlName="_workspaceName" [class.is-invalid]="FormUtils.isInvalidField(reportForm.get('_workspaceName'))">
+         <app-field-error-message [control]="reportForm.get('_workspaceName')" label="Nome da Workspace"></app-field-error-message>
+      </div>
+      <div class="col-6">
+         <label for="workspaceID" class="form-label fw-bold">ID da Workspace</label>
+         <input class="form-control" id="workspaceID" formControlName="_workspaceID">
+      </div>
+   </div>
+
+   <div class="row mb-3">
+      <div class="col-6">
+         <label for="datasetID" class="form-label fw-bold">ID do Dataset</label>
+         <input class="form-control" id="datasetID" formControlName="_datasetID">
+      </div>
+      <div class="col-6">
+         <label for="appID" class="form-label fw-bold">ID da Aplicação</label>
+         <input class="form-control" id="appID" formControlName="_appID">
+      </div>
+   </div>
+
+   <div class="row mb-3">
+      <div class="col-12">
+         <label for="reportID" class="form-label fw-bold">ID do Relatório</label>
+         <input class="form-control" id="reportID" formControlName="_reportID">
+      </div>
+   </div>
+</form>
+
+<div *ngIf="showEmbedForm" class="embed-form">
+   <hr class="my-3">
+   <pbi-angular-form [embedUrl]="reportConfigData.embedUrl" (onReportConfig)="getEmbeddedReport($event)"></pbi-angular-form>
+</div>

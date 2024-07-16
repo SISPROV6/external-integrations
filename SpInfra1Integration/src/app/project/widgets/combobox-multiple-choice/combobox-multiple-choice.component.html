@@ -1,0 +1,61 @@
+<div class="w-100 d-flex">
+  <div class="dropdown flex-fill glb-max-height-350px w-100">
+
+    <button class="form-select text-start border glb-cursor-pointer-none" type="button"
+      data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+      [class.glb-text-gray]="selectedLabels.length === 0" [class]="selectedOptions.length > 0 ? 'border-radius-filter' : ''">
+      {{ selectedLabels.length > 0 ? selectedLabels : placeholder }}
+    </button>
+
+    <ul class="dropdown-menu p-2 w-100 glb-max-height-350px overflow-y-scroll">
+      <div class="input-group mb-2">
+        <span class="input-group-text">
+          <app-svg-storage svgName="lupa" svgSize="medium-small"/>
+        </span>
+        <input #searchInput type="text" id="searchInput"
+          class="form-control" placeholder="Pesquisar..."
+          (input)="search = searchInput.value">
+      </div>
+
+      <!-- #region LISTA DOS SELECIONADOS -->
+      <ul *ngIf="selectedOptions && selectedOptions.length > 0"
+        class="w-100 px-1 my-2 column-gap-1 row-gap-1 d-flex flex-wrap align-items-center justify-content-start">
+        <li class="badge rounded-pill text-bg-primary"
+          *ngFor="let selectedOption of selectedOptions">
+            <span class="fw-normal me-1">{{ selectedOption.LABEL }}</span>
+            <app-svg-storage svgName="fechar" svgSize="small" tooltip="Excluir"
+              (click)="selectedOption.IS_SELECTED = false; setSelectedLabels()"/>
+        </li>
+      </ul>
+      <!-- #endregion LISTA DOS SELECIONADOS -->
+
+      <!-- #region LISTA DOS TIPOS DE ANEXO -->
+      <ng-container *ngIf="options; else loadingList">
+        <ng-container *ngIf="options.length > 0; else emptyListAnexo">
+          <li class="dropdown-item" [class.active]="option.IS_SELECTED"
+            *ngFor="let option of options | filterMultipleChoice:search"
+            (click)="option.IS_SELECTED = !option.IS_SELECTED; setSelectedLabels()">
+            {{ option.LABEL }}
+          </li>
+        </ng-container>
+
+        <!-- #region LISTA VAZIA -->
+        <ng-template #emptyListAnexo> <span class="fst-italic">Não foram encontrados registros com esta
+            pesquisa...</span> </ng-template>
+        <!-- #endregion LISTA VAZIA -->
+      </ng-container>
+
+      <ng-template #loadingList>
+        <li class="dropdown-item text-center">
+          <div class="spinner-border" role="status"> <span class="visually-hidden">Carregando dados...</span>
+          </div>
+        </li>
+      </ng-template>
+      <!-- #endregion LISTA DOS TIPOS DE ANEXO -->
+    </ul>
+  </div>
+  <div *ngIf="selectedOptions.length > 0">
+    <button class="btn btn-outline-primary border-radius-limpar" type="button"
+      (click)="resetFilter()"> Limpar </button>
+  </div>
+</div>
