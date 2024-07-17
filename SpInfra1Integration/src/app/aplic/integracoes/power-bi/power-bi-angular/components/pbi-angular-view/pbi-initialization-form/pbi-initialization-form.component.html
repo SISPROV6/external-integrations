@@ -32,5 +32,6 @@
 
 <div *ngIf="showEmbedForm" class="embed-form">
    <hr class="my-3">
-   <pbi-angular-form [embedUrl]="reportConfigData.embedUrl" (onReportConfig)="getEmbeddedReport($event)"></pbi-angular-form>
+   <pbi-angular-form [embedUrl]="reportConfigData.embedUrl" [datasetConfigData]="datasetConfigData" [reportConfigData]="reportConfigData"
+      (onReportConfig)="getEmbeddedReport($event)"></pbi-angular-form>
 </div>

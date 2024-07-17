@@ -2,7 +2,13 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, S
 import { IReportEmbedConfiguration, models } from 'powerbi-client';
 import { PowerBIAngularService } from '../../../../services/power-bi-angular.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormUtils } from 'ngx-sp-infra';
+import { FormUtils, MessageService } from 'ngx-sp-infra';
+import { GenerateTokenRequestModel } from '../../../models/generateTokenRequest.model';
+import { ProjectUtilservice } from 'src/app/project/utils/project-utils.service';
+import { GetReportsInGroupResponse } from '../../../models/getReportsInGroupResponse.model';
+import { GetGroupsResponseModel } from '../../../models/getGroupsResponse.model';
+import { GetDatasetsInGroupResponse } from '../../../models/getDatasetsInGroupResponse.model';
+import { GetAppsResponseModel } from '../../../models/getAppsResponse.model';
 
 @Component({
   selector: 'pbi-angular-form',
@@ -13,7 +19,9 @@ import { FormUtils } from 'ngx-sp-infra';
 export class PbiAngularFormComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private _formBuilder: FormBuilder,
-    private _powerBIAngService: PowerBIAngularService
+    private _messageService: MessageService,
+    private _powerBIAngService: PowerBIAngularService,
+    private _projectUtilService: ProjectUtilservice
   ) {  }
 
   public ngOnInit(): void {  }
@@ -32,7 +40,13 @@ export class PbiAngularFormComponent implements OnInit, OnDestroy, OnChanges {
   // #endregion PRIVATE
 
   // #region PUBLIC
-  @Input() public embedUrl: string;
+  @Input({ required: true }) public embedUrl: string;
+
+  @Input() public workspaceConfigData: GetGroupsResponseModel.Value;
+  @Input() public datasetConfigData: GetDatasetsInGroupResponse.Value;
+  @Input() public appConfigData: GetAppsResponseModel.Value;
+  @Input() public reportConfigData: GetReportsInGroupResponse.Value;
+
   @Output() public onReportConfig: EventEmitter<IReportEmbedConfiguration> = new EventEmitter<IReportEmbedConfiguration>();
 
   public TokenType = models.TokenType;
@@ -63,16 +77,6 @@ export class PbiAngularFormComponent implements OnInit, OnDestroy, OnChanges {
       _configuracoesExtras: [ null ],
     });
   }
-
-  public getSelectedTokenType(): models.TokenType | undefined {
-    const selectedValue = this.reportForm.get('_tipoToken')?.value;
-    if (selectedValue !== null) {
-      const tokenType = Number(selectedValue) as models.TokenType;
-      return selectedValue as models.TokenType;
-    }
-
-    return undefined;
-  }
   // #endregion FORM VALIDATORS
 
   // #endregion ==========> FORM BUILDER <==========
@@ -85,15 +89,6 @@ export class PbiAngularFormComponent implements OnInit, OnDestroy, OnChanges {
   // #endregion PREPARATION
 
   // #region GET
-  public getGroups(): void {
-    this._powerBIAngService.getGroups().subscribe({
-      next: response => {
-        
-      }
-    });
-  }
-
-
   public getEmbeddedReport(): void {
     if (this.reportForm.valid) {
       let config: IReportEmbedConfiguration = {
@@ -104,7 +99,6 @@ export class PbiAngularFormComponent implements OnInit, OnDestroy, OnChanges {
         settings: undefined,
       };
 
-      console.log(config);
       this.onReportConfig.emit(config);
     }
     else { FormUtils.validateFields(this.reportForm) }
@@ -112,7 +106,28 @@ export class PbiAngularFormComponent implements OnInit, OnDestroy, OnChanges {
   // #endregion GET
 
   // #region POST
-  // [...]
+  public generateEmbedToken(): void {
+    let request: GenerateTokenRequestModel = {
+      datasets: [ { id: this.datasetConfigData.id } ],
+      reports: [
+        { id: this.reportConfigData.id, allowEdit: true }
+      ]
+    };
+
+    this._powerBIAngService.generateEmbedToken(request).subscribe({
+      next: response => {
+        try {
+          if (!response) {
+            throw new Error("Ocorreu um erro ao gerar o token de acesso. Tente novamente mais tarde!");
+          }
+
+          this.reportForm.controls["_tokenAcesso"].setValue(response.token);
+        }
+        catch (error) { this._messageService.showAlertDanger("Ocorreu um erro ao gerar o token de acesso. Tente novamente mais tarde!") }
+      },
+      error: error => { this._projectUtilService.showHttpError(error) }
+    });
+  }
   // #endregion POST
 
   // #region DELETE

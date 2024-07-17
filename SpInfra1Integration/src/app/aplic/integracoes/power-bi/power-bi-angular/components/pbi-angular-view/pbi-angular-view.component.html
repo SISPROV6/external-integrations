@@ -12,7 +12,8 @@
       <div class="row w-100 h-100">
          <div *ngIf="!isEmbedded; else embebReportFlow" class="col-12">
             <pbi-initialization-form (onReportConfig)="reportConfig = $event; isEmbedded = $event.id != ''"></pbi-initialization-form>
-            <button type="button" class="btn btn-primary" (click)="initializeData()"> INICIALIZAR DASHBOARD </button>
+            <button type="button" class="btn btn-primary" (click)="initializeData()"
+               [disabled]="pbiInitializationFormComponent && pbiInitializationFormComponent.pbiAngularFormComponent && pbiInitializationFormComponent.pbiAngularFormComponent._tokenAcesso == ''"> INICIALIZAR DASHBOARD </button>
          </div>
 
          <ng-template #embebReportFlow>
