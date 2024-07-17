@@ -169,14 +169,16 @@ export class PbiAngularViewComponent implements OnInit, OnDestroy {
   public initializeData(): void {
     this.embeddingReport = true;
 
-    console.log(this.pbiInitializationFormComponent);
-    console.log(this.pbiInitializationFormComponent.pbiAngularFormComponent);
-
     if (!this.pbiInitializationFormComponent.showEmbedForm) {
       this.pbiInitializationFormComponent.getGroupByName();
     }
     else {
-      this.pbiInitializationFormComponent.pbiAngularFormComponent.getEmbeddedReport();
+      if (this.pbiInitializationFormComponent.pbiAngularFormComponent._tokenAcesso != "") {
+        this.pbiInitializationFormComponent.pbiAngularFormComponent.getEmbeddedReport();
+      }
+      else {
+        this.pbiInitializationFormComponent.pbiAngularFormComponent.generateEmbedToken();
+      }
     }
   }
   // #endregion GET
