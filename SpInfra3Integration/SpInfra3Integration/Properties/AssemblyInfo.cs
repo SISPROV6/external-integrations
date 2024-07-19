@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
-[assembly: AssemblyTitle("Sp9Integration")]
-[assembly: AssemblyDescription("Sistema - Integrações")]
+[assembly: AssemblyTitle("SpInfra3Integration")]
+[assembly: AssemblyDescription("Sistema - Regras de Negócio")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SISPRO S/A - Serviços e Tecnologia da Informação")]
 [assembly: AssemblyProduct("Sispro INFRA")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // O GUID a seguir será destinado à ID de typelib se este projeto for exposto para COM
-[assembly: Guid("ec194c9a-4b16-4ea3-82a7-dbbfe90fdfe0")]
+[assembly: Guid("0d2b20c6-55f0-4c81-a05e-4996e5d3a98e")]
 
 // As informações da versão de um assembly consistem nos quatro valores a seguir:
 //
