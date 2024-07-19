@@ -1,0 +1,8 @@
+C:\SisproCloud\INFRA\Bin\SpInfra2IntegrationWS.dll.config
+C:\SisproCloud\INFRA\Bin\SpInfra2IntegrationWS.dll
+C:\SisproCloud\INFRA\Bin\SpInfra2IntegrationWS.pdb
+C:\SisproCloud\INFRA\Bin\Swagger.xml
+C:\SisproCloud\INFRA\Fontes\Sp_999_Integration\SpInfra2IntegrationWS\SpInfra2IntegrationWS\obj\Debug\SpInfra2IntegrationWS.csproj.CoreCompileInputs.cache
+C:\SisproCloud\INFRA\Fontes\Sp_999_Integration\SpInfra2IntegrationWS\SpInfra2IntegrationWS\obj\Debug\SpInfra2IntegrationWS.csproj.CopyComplete
+C:\SisproCloud\INFRA\Fontes\Sp_999_Integration\SpInfra2IntegrationWS\SpInfra2IntegrationWS\obj\Debug\SpInfra2IntegrationWS.dll
+C:\SisproCloud\INFRA\Fontes\Sp_999_Integration\SpInfra2IntegrationWS\SpInfra2IntegrationWS\obj\Debug\SpInfra2IntegrationWS.pdb
