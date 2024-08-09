@@ -1,11 +1,6 @@
 export class GetAppsResponseModel {
    public "@odata.context": string;
    public value: GetAppsResponseModel.Value[];
- 
-   constructor() {
-     this["@odata.context"] = "";
-     this.value = [];
-   }
 }
  
 export namespace GetAppsResponseModel {
@@ -17,15 +12,5 @@ export namespace GetAppsResponseModel {
      public publishedBy: string;
      public workspaceId: string;
      public users: any[];
- 
-     constructor() {
-       this.id = "";
-       this.name = "";
-       this.lastUpdate = "";
-       this.description = "";
-       this.publishedBy = "";
-       this.workspaceId = "";
-       this.users = [];
-     }
    }
 }

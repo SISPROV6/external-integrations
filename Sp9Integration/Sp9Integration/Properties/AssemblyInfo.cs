@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
 [assembly: AssemblyTitle("Sp9Integration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Sistema - Integrações")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Sp9Integration")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("SISPRO S/A - Serviços e Tecnologia da Informação")]
+[assembly: AssemblyProduct("Sispro INFRA")]
+[assembly: AssemblyCopyright("Produto de propriedade de SISPRO S/A (051)3415-3300.")]
+[assembly: AssemblyTrademark("Este produto está protegido por lei contra o uso indevido.  Consulte a documentação para maiores esclarecimentos.")]
 [assembly: AssemblyCulture("")]
 
 // Definir ComVisible como false torna os tipos neste assembly invisíveis
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // É possível especificar todos os valores ou usar como padrão os Números de Build e da Revisão
 // usando o "*" como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1000")]
+[assembly: AssemblyFileVersion("1.0.0.1000")]
