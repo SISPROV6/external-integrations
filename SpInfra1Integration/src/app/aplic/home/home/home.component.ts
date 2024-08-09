@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   public cardsTela = [
     { NOME: "Integração PowerBI (biblioteca Angular)", ROTA: "/integration/power-bi-angular", DESCRICAO: "Integração com PowerBI via biblioteca do Angular chamada <span class='text-primary fw-bold'>powerbi-client-angular</span>.", EQUIPE: "PD&I" },
-    { NOME: "Integração PowerBI (REST APIs)", ROTA: "/integration/power-bi-rest", DESCRICAO: "Integração com PowerBI via REST APIs pelo Microsoft Entra ID <span class='fst-italic'>(antigo Azure AD)</span>", EQUIPE: "PD&I" },
+    { NOME: "Integrações Git", ROTA: "", DESCRICAO: "Integrações com nossas bibliotecas internas e repositórios externos como o Git", EQUIPE: "PD&I" },
   ]
 
 }
